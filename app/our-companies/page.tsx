@@ -61,17 +61,32 @@ export default function OurCompaniesPage() {
         return (
           <>
             <h2>Accreditations</h2>
+
             <p>
-              Our commitment to excellence is recognized through international
-              certifications that reflect quality, safety, and environmental
-              responsibility.
+              Incredible Industries Ltd. is certified under globally recognised
+              quality and safety standards, reflecting our commitment to
+              delivering trusted and reliable steel products. These
+              accreditations validate our focus on consistent quality, strict
+              environmental responsibility, and a safe working environment.
             </p>
-            <ul>
-              <li>ISO 9001:2015 — Quality Management Systems</li>
-              <li>ISO 14001:2015 — Environmental Management Systems</li>
-              <li>OHSAS 45001:2018 — Occupational Health & Safety</li>
+
+            <p>
+              Our systems and processes comply with internationally accepted
+              benchmarks, ensuring that every product leaving our facilities
+              meets the expectations of customers, regulators and stakeholders.
+            </p>
+
+            <ul className="mt-4 space-y-2">
+              <li>• ISO 9001:2015 — Quality Management Systems</li>
+              <li>• ISO 14001:2015 — Environmental Management Systems</li>
+              <li>• OHSAS 45001:2018 — Occupational Health & Safety</li>
             </ul>
-            <a href="/docs/accreditations.pdf" target="_blank" className="btn">
+
+            <a
+              href="/docs/accreditations.pdf"
+              target="_blank"
+              className="inline-block mt-6 text-blue-400 hover:text-blue-300 transition"
+            >
               View Certificate →
             </a>
           </>
@@ -235,7 +250,7 @@ export default function OurCompaniesPage() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 py-16">
+      <div className="relative z-10 max-w-5xl mx-auto px-6 py-6">
         <motion.div
           className="bg-neutral-900/50 backdrop-blur-md rounded-3xl border border-neutral-800 shadow-2xl p-10 md:p-14"
           {...fadeAnim}
