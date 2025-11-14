@@ -1,216 +1,154 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { motion } from "framer-motion";
 
 export default function GroupOfCompaniesPage() {
-  const tabs = [
-    { id: "group-overview", title: "Group Overview" },
-    { id: "adhunik-industries", title: "Adhunik Industries Limited" },
-    { id: "adhunik-power", title: "Adhunik Power & Natural Resources Ltd." },
-    { id: "adhunik-infra", title: "Adhunik Infrastructure Pvt. Ltd." },
-    { id: "adhunik-realtors", title: "Adhunik Realtors & Developers Ltd." },
-    { id: "adhunik-alloy", title: "Adhunik Alloy Steels Ltd." },
-    { id: "adhunik-mines", title: "Adhunik Mines & Minerals Pvt. Ltd." },
+  const sections = [
+    {
+      title: "Group Overview",
+      subtitle: "A diversified industrial group shaping modern India.",
+      description: [
+        "The Adhunik Group is one of India’s most diversified industrial conglomerates, with businesses spanning steel, power, mining, and infrastructure.",
+        "Our companies operate independently, but share the same values: integrity, innovation, quality, and responsible growth.",
+      ],
+      highlights: [
+        "Sustainable operations",
+        "PAN-India presence",
+        "Technology-driven growth",
+      ],
+    },
+    {
+      title: "Adhunik Industries Limited",
+      subtitle: "Premium TMT bars, billets & structural steel.",
+      description: [
+        "AIL is a leading steel manufacturer producing Fe500D TMT bars and high-grade billets trusted across India’s construction landscape.",
+        "Our advanced rolling technology ensures superior strength, flexibility, and corrosion resistance.",
+      ],
+      highlights: ["Fe500D TMT Bars", "Tempcore Process", "ISO-Certified"],
+    },
+    {
+      title: "Adhunik Power & Natural Resources Ltd.",
+      subtitle: "Clean, efficient, future-ready energy solutions.",
+      description: [
+        "APNRL is committed to delivering reliable and efficient power with lower environmental impact.",
+        "Our diversified portfolio includes modern thermal technologies and renewable integration.",
+      ],
+      highlights: [
+        "Integrated Power Assets",
+        "Cleaner Emissions",
+        "Renewable Integration",
+      ],
+    },
+    {
+      title: "Adhunik Infrastructure Pvt. Ltd.",
+      subtitle: "Building large-scale infrastructure for India’s growth.",
+      description: [
+        "The company specializes in highways, industrial parks, bridges and other critical infrastructure.",
+        "Our precision engineering ensures long-term durability and quality.",
+      ],
+      highlights: [
+        "Highways & Bridges",
+        "Industrial Infrastructure",
+        "Sustainable Construction",
+      ],
+    },
+    {
+      title: "Adhunik Realtors & Developers Ltd.",
+      subtitle: "Modern residential & commercial developments.",
+      description: [
+        "The real estate division focuses on sustainable architecture, green design and smart living solutions.",
+        "We create premium, future-ready spaces for urban India.",
+      ],
+      highlights: ["Eco-Friendly Designs", "Smart Homes", "Premium Spaces"],
+    },
+    {
+      title: "Adhunik Alloy Steels Ltd.",
+      subtitle: "Special alloy steels for automotive & heavy industry.",
+      description: [
+        "AASL produces high-performance alloy steels designed for demanding applications.",
+        "Engineering precision drives our manufacturing and innovation.",
+      ],
+      highlights: ["Specialty Alloys", "Automotive Grade", "Advanced R&D"],
+    },
+    {
+      title: "Adhunik Mines & Minerals Pvt. Ltd.",
+      subtitle: "Ethical mining & raw material excellence.",
+      description: [
+        "The mining division supplies essential raw materials for steel and power businesses.",
+        "Our mining operations are guided by sustainability and community welfare.",
+      ],
+      highlights: ["Responsible Mining", "High-Quality Ore", "Safety-Driven"],
+    },
   ];
 
-  const [activeTab, setActiveTab] = useState("group-overview");
-
-  const fadeAnim = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: -20 },
-    transition: { duration: 0.5 },
-  };
-
-  const renderContent = () => {
-    switch (activeTab) {
-      case "group-overview":
-        return (
-          <>
-            <h2>Group Overview</h2>
-            <p>
-              The Adhunik Group is one of India’s most diversified and
-              progressive industrial conglomerates, with interests spanning
-              steel, power, mining, and infrastructure. Founded on integrity,
-              innovation, and sustainability, the Group has played a pivotal
-              role in shaping India’s industrial growth.
-            </p>
-            <p>
-              Each company under the Group operates independently while sharing
-              a common mission — to deliver superior value through technology,
-              efficiency, and responsible growth.
-            </p>
-          </>
-        );
-
-      case "adhunik-industries":
-        return (
-          <>
-            <h2>Adhunik Industries Limited</h2>
-            <p>
-              Adhunik Industries Limited (AIL) is a leading steel manufacturer,
-              producing high-quality TMT bars, billets, and structural products
-              that power the nation’s infrastructure and construction sectors.
-            </p>
-            <p>
-              AIL’s facilities are equipped with advanced rolling technologies,
-              ensuring strength, precision, and sustainability in every product.
-            </p>
-          </>
-        );
-
-      case "adhunik-power":
-        return (
-          <>
-            <h2>Adhunik Power & Natural Resources Ltd.</h2>
-            <p>
-              Adhunik Power & Natural Resources Ltd. (APNRL) is among India’s
-              prominent integrated power producers, operating with a commitment
-              to efficiency and environmental responsibility.
-            </p>
-            <p>
-              APNRL emphasizes renewable integration, sustainable generation,
-              and reducing carbon footprint — contributing to India’s growing
-              clean energy landscape.
-            </p>
-          </>
-        );
-
-      case "adhunik-infra":
-        return (
-          <>
-            <h2>Adhunik Infrastructure Pvt. Ltd.</h2>
-            <p>
-              Adhunik Infrastructure Pvt. Ltd. specializes in developing and
-              executing large-scale infrastructure projects including highways,
-              industrial parks, and bridges.
-            </p>
-            <p>
-              Built on precision engineering and sustainability, the company
-              aims to strengthen the nation’s connectivity and economic growth.
-            </p>
-          </>
-        );
-
-      case "adhunik-realtors":
-        return (
-          <>
-            <h2>Adhunik Realtors & Developers Ltd.</h2>
-            <p>
-              Adhunik Realtors & Developers Ltd. pioneers modern real estate
-              development, delivering eco-friendly housing and commercial spaces
-              that redefine contemporary urban living.
-            </p>
-            <p>
-              With innovation and architectural excellence at its core, the
-              company is transforming India’s skyline with quality and trust.
-            </p>
-          </>
-        );
-
-      case "adhunik-alloy":
-        return (
-          <>
-            <h2>Adhunik Alloy Steels Ltd.</h2>
-            <p>
-              Adhunik Alloy Steels Ltd. (AASL) is a market leader in alloy and
-              special steel production for automotive, engineering, and heavy
-              industrial use.
-            </p>
-            <p>
-              AASL’s advanced R&D facilities drive consistent innovation,
-              delivering reliable steel products that meet global standards.
-            </p>
-          </>
-        );
-
-      case "adhunik-mines":
-        return (
-          <>
-            <h2>Adhunik Mines & Minerals Pvt. Ltd.</h2>
-            <p>
-              Adhunik Mines & Minerals Pvt. Ltd. focuses on responsible mining
-              and supply of raw materials essential for industrial production.
-            </p>
-            <p>
-              Through ethical extraction, efficiency, and safety-driven
-              operations, it supports the Group’s steel and power businesses
-              while minimizing environmental impact.
-            </p>
-          </>
-        );
-
-      default:
-        return null;
-    }
-  };
-
   return (
-    <main className="min-h-screen bg-black text-white overflow-hidden">
-      {/* Hero Section */}
-      <section className="relative h-[45vh] flex flex-col justify-center items-center text-center bg-gradient-to-b from-neutral-900 to-black">
+    <main className="bg-black text-neutral-200">
+      {/* HERO */}
+      <section className="h-[35vh] sm:h-[45vh] flex flex-col justify-center items-center text-center bg-gradient-to-b from-neutral-900 to-black px-6">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-6xl md:text-7xl font-extrabold mb-4 bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent"
+          transition={{ duration: 0.6 }}
+          className="text-4xl sm:text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent"
         >
           Group of Companies
         </motion.h1>
+
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="text-gray-400 text-lg max-w-2xl"
+          transition={{ delay: 0.3 }}
+          className="text-gray-400 text-sm sm:text-base max-w-xl mt-4"
         >
-          Exploring the Adhunik Group’s industrial ecosystem — powering India’s
-          growth with innovation and integrity.
+          Explore the Adhunik ecosystem — a blend of innovation, engineering and
+          sustainable growth powering India’s future.
         </motion.p>
       </section>
 
-      {/* Tabs Navigation */}
-      <div className="relative z-10 flex justify-center border-b border-neutral-800 bg-black/70 backdrop-blur-sm sticky top-0">
-        <div className="flex gap-6 overflow-x-auto px-6 py-4 scrollbar-none">
-          {tabs.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`relative pb-2 text-sm md:text-base font-medium transition-all ${
-                activeTab === tab.id
-                  ? "text-blue-400"
-                  : "text-gray-400 hover:text-gray-200"
-              }`}
-            >
-              {tab.title}
-              {activeTab === tab.id && (
-                <motion.div
-                  layoutId="underline"
-                  className="absolute bottom-0 left-0 right-0 h-[2px] bg-blue-500 rounded-full"
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                />
-              )}
-            </button>
-          ))}
-        </div>
-      </div>
+      {/* SECTION CARDS */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-16 space-y-12 sm:space-y-16">
+        {sections.map((sec, i) => (
+          <motion.section
+            key={i}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="bg-neutral-900/60 border border-neutral-800 rounded-2xl sm:rounded-3xl p-6 sm:p-10 shadow-xl backdrop-blur-md"
+          >
+            {/* Title */}
+            <h2 className="text-2xl sm:text-3xl font-semibold text-white mb-2">
+              {sec.title}
+            </h2>
 
-      {/* Content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 py-16">
-        <motion.div
-          className="bg-neutral-900/50 backdrop-blur-md rounded-3xl border border-neutral-800 shadow-2xl p-10 md:p-14"
-          {...fadeAnim}
-        >
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeTab}
-              {...fadeAnim}
-              className="space-y-6 text-gray-300"
-            >
-              {renderContent()}
-            </motion.div>
-          </AnimatePresence>
-        </motion.div>
+            {/* Subtitle */}
+            <p className="text-blue-400 text-sm sm:text-base mb-4">
+              {sec.subtitle}
+            </p>
+
+            {/* Description paragraphs */}
+            <div className="space-y-3 text-sm sm:text-base text-neutral-300 leading-relaxed">
+              {sec.description.map((p, idx) => (
+                <p key={idx}>{p}</p>
+              ))}
+            </div>
+
+            {/* Highlights */}
+            <div className="mt-6 bg-neutral-950 border border-neutral-800 rounded-xl p-4 sm:p-5">
+              <h3 className="text-white font-semibold text-sm mb-3">
+                Key Highlights
+              </h3>
+              <ul className="space-y-2">
+                {sec.highlights.map((h, idx) => (
+                  <li key={idx} className="flex items-start gap-3">
+                    <span className="text-blue-400 mt-1">•</span>
+                    <span className="text-sm sm:text-base">{h}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </motion.section>
+        ))}
       </div>
     </main>
   );

@@ -10,7 +10,7 @@ export default function LinkEdgePage() {
       {/* HERO SECTION */}
       <section className="relative h-[90vh] flex flex-col justify-center items-center text-center">
         <Image
-          src="/linkedge.png"
+          src="/LinkEdge.png"
           alt="Adhunik Link EDGE"
           fill
           className="object-cover opacity-40"
@@ -78,7 +78,7 @@ export default function LinkEdgePage() {
             className="relative h-[450px] rounded-xl overflow-hidden shadow-lg border border-neutral-800"
           >
             <Image
-              src="/linkedge.png"
+              src="/LinkEdge.png"
               alt="Adhunik Link EDGE Product"
               fill
               className="object-cover"

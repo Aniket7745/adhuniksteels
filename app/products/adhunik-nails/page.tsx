@@ -10,7 +10,7 @@ export default function AdhunikNailsPage() {
       {/* HERO */}
       <section className="relative h-[90vh] flex flex-col justify-center items-center text-center">
         <Image
-          src="/nails.png"
+          src="/nail.png"
           alt="Adhunik Nails"
           fill
           className="object-cover opacity-40"
@@ -76,7 +76,7 @@ export default function AdhunikNailsPage() {
             className="relative h-[450px] rounded-xl overflow-hidden shadow-lg border border-neutral-800"
           >
             <Image
-              src="/nails.png"
+              src="/nail.png"
               alt="Adhunik Nails Product"
               fill
               className="object-cover"

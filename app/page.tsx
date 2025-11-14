@@ -126,13 +126,13 @@ export default function HomePage() {
               {
                 title: "Link EDGE",
                 desc: "Pre-formed stirrups made with FE500SD TMT ensure dimensional precision, zero wastage, and next-generation reinforcement reliability.",
-                img: "/linkedge.png",
+                img: "/LinkEdge.png",
                 href: "/products/link-edge",
               },
               {
                 title: "Adhunik Nails",
                 desc: "Cold-forged, precision-engineered nails built for industrial durability, corrosion resistance, and long-lasting fabrication performance.",
-                img: "/nails.png",
+                img: "/nail.png",
                 href: "/products/adhunik-nails",
               },
             ].map((product, i) => (
@@ -220,53 +220,6 @@ export default function HomePage() {
           </div>
         </motion.div>
       </section>
-
-      {/* FOOTER */}
-      <footer className="bg-neutral-950 text-gray-400 py-12 border-t border-neutral-800">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-10 px-6">
-          <div>
-            <h4 className="text-lg font-semibold mb-3 text-white">Corporate</h4>
-            <ul className="space-y-1 text-sm">
-              <li>Corporate Profile</li>
-              <li>Management</li>
-              <li>R&D</li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-lg font-semibold mb-3 text-white">Products</h4>
-            <ul className="space-y-1 text-sm">
-              <li>Sponge Iron</li>
-              <li>Ferro Alloys</li>
-              <li>Power</li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-lg font-semibold mb-3 text-white">Investors</h4>
-            <ul className="space-y-1 text-sm">
-              <li>Sustainability</li>
-              <li>Events</li>
-              <li>Careers</li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-lg font-semibold mb-3 text-white">
-              Connect With Us
-            </h4>
-            <p className="text-sm leading-relaxed">
-              Adhunik Industries Ltd.
-              <br />
-              Kolkata, India
-            </p>
-            <p className="text-sm mt-2">
-              Phone: +91 33 2243 4350 <br />
-              Email: info@adhunikgroup.com
-            </p>
-          </div>
-        </div>
-        <div className="text-center text-xs text-gray-600 mt-10">
-          © {new Date().getFullYear()} Adhunik Group. All Rights Reserved.
-        </div>
-      </footer>
     </main>
   );
 }

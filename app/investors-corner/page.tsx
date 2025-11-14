@@ -513,6 +513,60 @@ const CONTENT = {
       })),
     ],
   },
+
+  /* -----------------------------------------------------------------------
+   FINANCIALS SECTION
+----------------------------------------------------------------------- */
+
+  "Annual Report": {
+    type: "multiple",
+    title: "Annual Report",
+    files: [
+      ...[
+        "Annual_Report_31st_March_2010.pdf",
+        "Annual_Report_31st_March_2011.pdf",
+        "Annual_Report_31st_March_2012.pdf",
+        "Annual_Report_31st_March_2013.pdf",
+        "Annual_Report_31st_March_2014.pdf",
+        "Annual_Report_31st_March_2015.pdf",
+        "Annual_Report_31st_March_2016.pdf",
+        "Annual_Report_31st_March_2017.pdf",
+        "Annual_Report_31st_March_2018.pdf",
+        "Annual_Report_31st_March_2019.pdf",
+        "Annual_Report_31st_March_2020.pdf",
+        "Annual_Report_31st_March_2021.pdf",
+        "Annual_Report_31st_March_2022.pdf",
+        "Annual_Report_31st_March_2023.pdf",
+        "Annual_Report_31st_March_2024.pdf",
+        "Annual_Report_31st_March_2025.pdf",
+      ].map((file) => ({
+        name: file.replace(".pdf", ""),
+        file: encodeURI(`/Financials/Annual_Report/${file}`),
+      })),
+    ],
+  },
+
+  "Financial Results": {
+    type: "multiple",
+    title: "Financial Results",
+    files: [
+      ...[
+        "Audited_Financial_Results_For_The_Quarter_And_Year_Ended_31st_March,2023.pdf",
+        "Audited_Financial_Results_For_The_Quarter_And_Year_Ended_31st_March,2024.pdf",
+        "Audited_Financial_Results_For_The_Quarter_And_Year_Ended_31st_March,2025.pdf",
+        "Unaudited Financial_Results_for_the_Quarter_and_Nine_Months_Ended_30th_June,2023.pdf",
+        "Unaudited_Financial_Results_for_the_Quarter_and_Nine_Months_Ended_31st_December,2023.pdf",
+        "Unaudited_Financial_Results_for_the_Quarter_Ended_30th_June,2024.pdf",
+        "Unaudited_Financial_Results_for_the_Quarter_Ended_30th_June,2025.pdf",
+        "Unaudited_Financial_Results_for_the_Quarter_Ended_30th_September,2023.pdf",
+        "Unaudited_Financial_Results_for_the_Quarter_Ended_30th_September,2024.pdf",
+        "Unaudited_Financial_Results_for_the_Quarter_Ended_31st_December,2024.pdf",
+      ].map((file) => ({
+        name: file.replace(".pdf", ""),
+        file: encodeURI(`/Financials/Financials_Results/${file}`),
+      })),
+    ],
+  },
 };
 /* ------------------------------------------------------------------
    MAIN COMPONENT

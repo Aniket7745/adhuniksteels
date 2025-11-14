@@ -25,7 +25,7 @@ export default function ProductsPage() {
       id: "link-edge",
       name: "Link EDGE",
       tagline: "Precision. Strength. Safety.",
-      image: "/linkedge.png",
+      image: "/LinkEdge.png",
       description:
         "Pre-formed stirrups made with FE500SD TMT ensure unmatched dimensional accuracy, earthquake resistance, and zero wastage — the next generation of reinforcement technology.",
     },
@@ -33,7 +33,7 @@ export default function ProductsPage() {
       id: "adhunik-nails",
       name: "Adhunik Nails",
       tagline: "Precision Engineered Fasteners for Industrial Strength",
-      image: "/nails.png",
+      image: "/nail.png",
       description:
         "Cold-forged, heat-treated steel nails built for precision, corrosion resistance, and durability — designed for demanding industrial and fabrication use.",
     },
@@ -165,31 +165,6 @@ export default function ProductsPage() {
           );
         })}
       </div>
-
-      {/* CTA SECTION */}
-      <section className="bg-blue-700 text-white py-20 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="max-w-3xl mx-auto px-6"
-        >
-          <h2 className="text-4xl font-semibold mb-4">
-            Built for the Future of Infrastructure
-          </h2>
-          <p className="text-blue-100 mb-8 leading-relaxed">
-            Adhunik’s advanced metallurgical expertise and manufacturing
-            precision empower industries to construct stronger, safer, and more
-            sustainable structures across India.
-          </p>
-          <Link href="/enquiry">
-            <button className="px-8 py-3 bg-white text-blue-700 font-semibold hover:bg-gray-100 transition rounded-full">
-              Connect with Our Engineering Team
-            </button>
-          </Link>
-        </motion.div>
-      </section>
     </main>
   );
 }
