@@ -93,6 +93,9 @@ const NAV = [
 /* -------------------------
    PAGE CONTENT — FULL MAPPING
 ------------------------- */
+/* -------------------------
+   PAGE CONTENT (UNCHANGED)
+------------------------- */
 const CONTENT = {
   /* -----------------------------------------------------------------------
      CORPORATE GOVERNANCE (Already working fine)
@@ -219,17 +222,15 @@ const CONTENT = {
   },
 
   /* -----------------------------------------------------------------------
-     INVESTOR SERVICES (FULL 74 PDFs MAPPED)
+     INVESTOR SERVICES 
   ----------------------------------------------------------------------- */
 
-  /* ------------ MOA & AOA ------------ */
   "MOA & AOA": {
     type: "pdf",
     title: "MOA & AOA",
     file: encodeURI("/Investor_Services/MOA_&_AOA/MOA_&_AOA.pdf"),
   },
 
-  /* ------------ CSR Annual Action Plan ------------ */
   "CSR Annual Action Plan": {
     type: "pdf",
     title: "CSR Annual Action Plan (2022-23)",
@@ -238,7 +239,6 @@ const CONTENT = {
     ),
   },
 
-  /* ------------ EMPTY CATEGORIES ------------ */
   "Board of Directors": null,
   "Composition of Various Committees Board of Directors": null,
   "Details of Business": null,
@@ -248,7 +248,6 @@ const CONTENT = {
   "Credit Rating": null,
   "Contact Details of KMP for Materiality (Reg 30)": null,
 
-  /* ------------ Shareholding Pattern ------------ */
   "Shareholding Pattern": {
     type: "multiple",
     title: "Shareholding Pattern",
@@ -271,7 +270,6 @@ const CONTENT = {
     ],
   },
 
-  /* ------------ Annual Return ------------ */
   "Annual Return": {
     type: "multiple",
     title: "Annual Return",
@@ -291,7 +289,6 @@ const CONTENT = {
     ],
   },
 
-  /* ------------ Compliance Report ------------ */
   "Compliance Report on Corporate Governance": {
     type: "multiple",
     title: "Compliance Report on Corporate Governance",
@@ -312,7 +309,6 @@ const CONTENT = {
     ],
   },
 
-  /* ------------ Notice of Board Meeting ------------ */
   "Notice of Board Meeting": {
     type: "multiple",
     title: "Notice of Board Meeting",
@@ -331,7 +327,6 @@ const CONTENT = {
     ],
   },
 
-  /* ------------ Newspaper Publication ------------ */
   "Newspaper Publication": {
     type: "multiple",
     title: "Newspaper Publication",
@@ -349,7 +344,6 @@ const CONTENT = {
     ],
   },
 
-  /* ------------ Regulation 30 LODR ------------ */
   "Disclosure Under Regulation 30 Of SEBI LODR": {
     type: "multiple",
     title: "Disclosure Under Regulation 30 Of SEBI LODR",
@@ -369,7 +363,6 @@ const CONTENT = {
     ],
   },
 
-  /* ------------ Notice of AGM ------------ */
   "Notice of AGM": {
     type: "multiple",
     title: "Notice of Annual General Meeting",
@@ -387,7 +380,6 @@ const CONTENT = {
     ],
   },
 
-  /* ------------ Notice of Postal Ballot ------------ */
   "Notice of Postal Ballot": {
     type: "multiple",
     title: "Notice of Postal Ballot",
@@ -404,7 +396,6 @@ const CONTENT = {
     ],
   },
 
-  /* ------------ Results of Postal Ballot ------------ */
   "Results Of Postal Ballot / E-Voting": {
     type: "multiple",
     title: "Results of Postal Ballot / E-Voting",
@@ -423,7 +414,6 @@ const CONTENT = {
     ],
   },
 
-  /* ------------ Related Party Transactions ------------ */
   "Related Party Transaction": {
     type: "multiple",
     title: "Related Party Transaction",
@@ -441,7 +431,6 @@ const CONTENT = {
     ],
   },
 
-  /* ------------ Unpaid & Unclaimed Dividend ------------ */
   "Unpaid and Unclaimed Dividend": {
     type: "pdf",
     title: "Unpaid and Unclaimed Dividend",
@@ -450,7 +439,6 @@ const CONTENT = {
     ),
   },
 
-  /* ------------ Miscellaneous ------------ */
   Miscellaneous: {
     type: "multiple",
     title: "Miscellaneous",
@@ -467,7 +455,6 @@ const CONTENT = {
     ],
   },
 
-  /* ------------ SEBI Takeover Regulations ------------ */
   "Disclosure under SEBI (Substantial Acquisition of Shares and Takeovers) Regulations, 2011":
     {
       type: "pdf",
@@ -477,7 +464,6 @@ const CONTENT = {
       ),
     },
 
-  /* ------------ Transcripts ------------ */
   Transcripts: {
     type: "multiple",
     title: "Transcripts",
@@ -492,7 +478,6 @@ const CONTENT = {
     ],
   },
 
-  /* ------------ Secretarial Compliance Report ------------ */
   "Secretarial Compliance Report under Regulation 24A": {
     type: "multiple",
     title: "Secretarial Compliance Report",
@@ -568,14 +553,20 @@ const CONTENT = {
     ],
   },
 };
+
 /* ------------------------------------------------------------------
-   MAIN COMPONENT – MOBILE FIXED + PDF WORKING
+   TYPES
+------------------------------------------------------------------ */
+type SectionId = keyof typeof SECTION_DESCRIPTIONS;
+
+/* ------------------------------------------------------------------
+   MAIN COMPONENT
 ------------------------------------------------------------------ */
 export default function InvestorsCorner() {
-  const [activeMain, setActiveMain] = useState("disclosure-46");
-  const [activeChild, setActiveChild] = useState(null);
-  const [expanded, setExpanded] = useState([]);
-  const [openPDF, setOpenPDF] = useState(null);
+  const [activeMain, setActiveMain] = useState<SectionId>("disclosure-46");
+  const [activeChild, setActiveChild] = useState<string | null>(null);
+  const [expanded, setExpanded] = useState<string[]>([]);
+  const [openPDF, setOpenPDF] = useState<any | null>(null);
 
   const toggleExpand = (id: string) => {
     setExpanded((prev) =>
@@ -590,44 +581,30 @@ export default function InvestorsCorner() {
     <>
       <main className="min-h-screen bg-black text-white">
         {/* HEADER */}
-        <section className="py-6 bg-gradient-to-b from-neutral-900 to-black text-center">
+        <section className="py-6 text-center bg-gradient-to-b from-neutral-900 to-black">
           <h1 className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
             Investor’s Corner
           </h1>
-
-          <p className="text-gray-400 mt-3 max-w-xl md:max-w-2xl mx-auto text-sm md:text-base px-4">
+          <p className="text-gray-400 mt-3 max-w-2xl mx-auto">
             Official disclosures, governance documents, reports & investor
             services — organized for easy access.
           </p>
         </section>
 
         {/* GRID */}
-        <div className="max-w-7xl mx-auto px-4 md:px-6 py-10 md:py-14 grid gap-6 md:grid-cols-[300px_1fr]">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 py-10 grid gap-6 md:grid-cols-[300px_1fr]">
           {/* SIDEBAR */}
-          <aside className="bg-neutral-950/40 border border-neutral-800 rounded-xl p-3 md:p-4 h-fit md:sticky md:top-24 max-md:relative">
+          <aside className="bg-neutral-950/40 border border-neutral-800 rounded-xl p-4 h-fit md:sticky md:top-24">
             {NAV.map((section) => (
-              <div key={section.id} className="my-1 scroll-mt-28">
+              <div key={section.id} className="my-1">
                 {/* MAIN BUTTON */}
                 <button
                   onClick={() => {
-                    setActiveMain(section.id);
+                    setActiveMain(section.id as SectionId);
                     setActiveChild(null);
                     if (section.children) toggleExpand(section.id);
-
-                    // Smooth Scroll on Mobile
-                    if (window.innerWidth < 768) {
-                      setTimeout(() => {
-                        const el = document.getElementById(section.id);
-                        if (el)
-                          el.scrollIntoView({
-                            behavior: "smooth",
-                            block: "start",
-                          });
-                      }, 80);
-                    }
                   }}
-                  id={section.id}
-                  className={`w-full px-3 md:px-4 py-3 rounded-lg flex justify-between items-center text-sm md:text-base ${
+                  className={`w-full px-4 py-3 rounded-lg flex justify-between ${
                     activeMain === section.id
                       ? "bg-blue-600/20 border border-blue-700 text-blue-300"
                       : "hover:bg-neutral-900/60 text-gray-300"
@@ -635,43 +612,24 @@ export default function InvestorsCorner() {
                 >
                   <span>{section.title}</span>
                   {section.children && (
-                    <span className="text-gray-500 text-lg">
-                      {expanded.includes(section.id) ? "−" : "+"}
-                    </span>
+                    <span>{expanded.includes(section.id) ? "−" : "+"}</span>
                   )}
                 </button>
 
-                {/* CHILD BUTTONS */}
+                {/* CHILDREN */}
                 <AnimatePresence>
                   {section.children && expanded.includes(section.id) && (
                     <motion.div
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
-                      className="ml-3 border-l border-neutral-800 max-md:ml-2"
+                      className="ml-3 border-l border-neutral-800"
                     >
                       {section.children.map((child) => (
                         <button
                           key={child}
-                          onClick={() => {
-                            setActiveChild(child);
-
-                            // Scroll inside child on mobile
-                            if (window.innerWidth < 768) {
-                              setTimeout(() => {
-                                const el = document.getElementById(
-                                  `child-${child}`,
-                                );
-                                if (el)
-                                  el.scrollIntoView({
-                                    behavior: "smooth",
-                                    block: "start",
-                                  });
-                              }, 80);
-                            }
-                          }}
-                          id={`child-${child}`}
-                          className={`block w-full px-3 py-2 my-1 text-left rounded-lg text-sm md:text-base ${
+                          onClick={() => setActiveChild(child)}
+                          className={`block w-full px-3 py-2 my-1 rounded-lg text-left ${
                             activeChild === child
                               ? "bg-blue-600/20 text-blue-300"
                               : "text-gray-400 hover:bg-neutral-900/60"
@@ -687,21 +645,21 @@ export default function InvestorsCorner() {
             ))}
           </aside>
 
-          {/* CONTENT */}
-          <section className="bg-neutral-950/40 border border-neutral-800 rounded-xl p-5 md:p-10 min-h-[50vh] md:min-h-[60vh] shadow-xl">
+          {/* CONTENT AREA */}
+          <section className="bg-neutral-950/40 border border-neutral-800 rounded-xl p-6">
             <motion.div
               key={activeMain + activeChild}
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.35 }}
+              transition={{ duration: 0.3 }}
             >
-              <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-blue-400">
+              <h2 className="text-3xl font-bold text-blue-400 mb-6">
                 {activeChild || NAV.find((x) => x.id === activeMain)?.title}
               </h2>
 
               {/* DESCRIPTION */}
               {!activeChild && (
-                <div className="text-gray-400 max-w-xl md:max-w-2xl leading-relaxed text-base md:text-lg">
+                <div className="text-gray-400 text-lg max-w-2xl leading-relaxed">
                   {currentSectionDesc.split("\n").map((line, i) => (
                     <p key={i} className="mb-3">
                       {line.trim()}
@@ -710,69 +668,77 @@ export default function InvestorsCorner() {
                 </div>
               )}
 
-              {/* SINGLE PDF */}
-              {CONTENT[activeChild]?.type === "pdf" && (
-                <div
-                  onClick={() => setOpenPDF(CONTENT[activeChild])}
-                  className="cursor-pointer bg-neutral-900/50 border border-neutral-800 rounded-xl p-4 md:p-5 hover:bg-neutral-900 hover:border-neutral-700 transition flex justify-between"
-                >
-                  <div>
-                    <h3 className="text-lg md:text-xl font-semibold text-gray-200">
-                      {CONTENT[activeChild].title}
-                    </h3>
-                    <p className="text-gray-500 text-sm">PDF Document</p>
-                  </div>
-                  <span className="text-2xl text-gray-500">›</span>
-                </div>
-              )}
-
-              {/* MULTIPLE PDF */}
-              {CONTENT[activeChild]?.type === "multiple" && (
-                <div className="space-y-4">
-                  {CONTENT[activeChild].files.map((pdf, i) => (
-                    <div
-                      key={i}
-                      onClick={() =>
-                        setOpenPDF({ title: pdf.name, file: pdf.file })
-                      }
-                      className="cursor-pointer bg-neutral-900/50 border border-neutral-800 rounded-xl p-4 md:p-5 hover:bg-neutral-900 hover:border-neutral-700 transition flex justify-between"
-                    >
-                      <div>
-                        <h3 className="text-base md:text-lg font-semibold text-gray-200">
-                          {pdf.name}
-                        </h3>
-                        <p className="text-gray-500 text-sm">PDF Document</p>
-                      </div>
-                      <span className="text-2xl text-gray-500">›</span>
+              {/* ---------------- SINGLE PDF ---------------- */}
+              {activeChild &&
+                CONTENT[activeChild as keyof typeof CONTENT]?.type ===
+                  "pdf" && (
+                  <div
+                    onClick={() =>
+                      setOpenPDF(CONTENT[activeChild as keyof typeof CONTENT]!)
+                    }
+                    className="cursor-pointer bg-neutral-900/50 p-5 border border-neutral-800 rounded-xl hover:bg-neutral-900 transition flex justify-between"
+                  >
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-200">
+                        {CONTENT[activeChild as keyof typeof CONTENT]!.title}
+                      </h3>
+                      <p className="text-gray-500 text-sm">PDF Document</p>
                     </div>
-                  ))}
-                </div>
-              )}
+                    <span className="text-2xl text-gray-500">›</span>
+                  </div>
+                )}
+
+              {/* ---------------- MULTIPLE PDFs ---------------- */}
+              {activeChild &&
+                CONTENT[activeChild as keyof typeof CONTENT]?.type ===
+                  "multiple" && (
+                  <div className="space-y-4">
+                    {(
+                      CONTENT[activeChild as keyof typeof CONTENT]! as any
+                    ).files.map((pdf: any, i: number) => (
+                      <div
+                        key={i}
+                        onClick={() =>
+                          setOpenPDF({
+                            title: pdf.name,
+                            file: pdf.file,
+                          })
+                        }
+                        className="cursor-pointer bg-neutral-900/50 border border-neutral-800 rounded-xl p-4 md:p-5 hover:bg-neutral-900 hover:border-neutral-700 transition flex justify-between"
+                      >
+                        <div>
+                          <h3 className="text-base md:text-lg font-semibold text-gray-200">
+                            {pdf.name}
+                          </h3>
+                          <p className="text-gray-500 text-sm">PDF Document</p>
+                        </div>
+                        <span className="text-2xl text-gray-500">›</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
             </motion.div>
           </section>
         </div>
       </main>
 
-      {/* ----------------------------------------------------------------------
-          PDF MODAL (RESTORED & WORKING)
-      ---------------------------------------------------------------------- */}
+      {/* PDF MODAL */}
       <AnimatePresence>
         {openPDF && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4 md:p-6"
+            className="fixed inset-0 bg-black/70 flex items-center justify-center p-6 z-50"
           >
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-neutral-900 rounded-xl shadow-2xl w-full max-w-4xl md:max-w-5xl h-[80vh] md:h-[90vh] border border-neutral-700 overflow-hidden"
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.9 }}
+              className="w-full max-w-4xl h-[85vh] bg-neutral-900 border border-neutral-700 rounded-xl overflow-hidden"
             >
-              {/* Modal Header */}
-              <div className="flex justify-between items-center p-4 border-b border-neutral-700">
-                <h3 className="text-lg md:text-xl font-semibold text-blue-300">
+              <div className="p-4 border-b border-neutral-700 flex justify-between">
+                <h3 className="text-xl text-blue-300 font-semibold">
                   {openPDF.title}
                 </h3>
                 <button
@@ -783,7 +749,6 @@ export default function InvestorsCorner() {
                 </button>
               </div>
 
-              {/* PDF Viewer */}
               <iframe src={openPDF.file} className="w-full h-full" />
             </motion.div>
           </motion.div>
