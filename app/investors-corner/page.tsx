@@ -569,7 +569,7 @@ const CONTENT = {
   },
 };
 /* ------------------------------------------------------------------
-   MAIN COMPONENT
+   MAIN COMPONENT – MOBILE FIXED VERSION
 ------------------------------------------------------------------ */
 export default function InvestorsCorner() {
   const [activeMain, setActiveMain] = useState("disclosure-46");
@@ -577,7 +577,7 @@ export default function InvestorsCorner() {
   const [expanded, setExpanded] = useState([]);
   const [openPDF, setOpenPDF] = useState(null);
 
-  const toggleExpand = (id: string) => {
+  const toggleExpand = (id) => {
     setExpanded((prev) =>
       prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id],
     );
@@ -591,37 +591,66 @@ export default function InvestorsCorner() {
       <main className="min-h-screen bg-black text-white">
         {/* HEADER */}
         <section className="py-6 bg-gradient-to-b from-neutral-900 to-black text-center">
-          <h1 className="text-5xl font-extrabold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
             Investor’s Corner
           </h1>
-          <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
+
+          <p className="text-gray-400 mt-3 max-w-xl md:max-w-2xl mx-auto text-sm md:text-base px-4">
             Official disclosures, governance documents, reports & investor
             services — organized for easy access.
           </p>
         </section>
 
         {/* GRID */}
-        <div className="max-w-7xl mx-auto px-6 py-14 grid md:grid-cols-[300px_1fr] gap-10">
+        <div
+          className="
+            max-w-7xl mx-auto px-4 md:px-6 py-10 md:py-14 
+            grid gap-6 md:grid-cols-[300px_1fr]
+        "
+        >
           {/* SIDEBAR */}
-          <aside className="bg-neutral-950/40 border border-neutral-800 rounded-2xl p-4 h-fit sticky top-20">
+          <aside
+            className="
+              bg-neutral-950/40 border border-neutral-800 rounded-xl 
+              p-3 md:p-4 h-fit 
+              md:sticky md:top-24 
+              max-md:relative      /* <-- FIX: remove sticky on mobile */
+            "
+          >
             {NAV.map((section) => (
-              <div key={section.id}>
+              <div key={section.id} className="my-1 scroll-mt-20">
                 <button
                   onClick={() => {
                     setActiveMain(section.id);
                     setActiveChild(null);
                     if (section.children) toggleExpand(section.id);
+
+                    /* FIX: Prevent auto-scroll jump on mobile */
+                    if (window.innerWidth < 768) {
+                      setTimeout(() => {
+                        const el = document.getElementById(section.id);
+                        if (el)
+                          el.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start",
+                          });
+                      }, 10);
+                    }
                   }}
-                  className={`w-full px-4 py-3 rounded-lg flex justify-between items-center 
+                  id={section.id}
+                  className={`
+                    w-full px-3 md:px-4 py-3 rounded-lg flex justify-between items-center
+                    text-sm md:text-base
                     ${
                       activeMain === section.id
                         ? "bg-blue-600/20 border border-blue-700 text-blue-300"
                         : "hover:bg-neutral-900/60 text-gray-300"
-                    }`}
+                    }
+                  `}
                 >
-                  {section.title}
+                  <span>{section.title}</span>
                   {section.children && (
-                    <span className="text-gray-500">
+                    <span className="text-gray-500 text-lg">
                       {expanded.includes(section.id) ? "−" : "+"}
                     </span>
                   )}
@@ -634,18 +663,38 @@ export default function InvestorsCorner() {
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
-                      className="ml-2 border-l border-neutral-800"
+                      className="ml-3 border-l border-neutral-800 max-md:ml-2"
                     >
                       {section.children.map((child) => (
                         <button
                           key={child}
-                          onClick={() => setActiveChild(child)}
-                          className={`block w-full px-4 py-2 text-left rounded-lg my-1
+                          onClick={() => {
+                            setActiveChild(child);
+
+                            /* FIX: Prevent scrolling issues */
+                            if (window.innerWidth < 768) {
+                              setTimeout(() => {
+                                const el = document.getElementById(
+                                  `${section.id}-${child}`,
+                                );
+                                if (el)
+                                  el.scrollIntoView({
+                                    behavior: "smooth",
+                                    block: "start",
+                                  });
+                              }, 10);
+                            }
+                          }}
+                          id={`${section.id}-${child}`}
+                          className={`
+                            block w-full px-3 py-2 my-1 text-left rounded-lg
+                            text-sm md:text-base
                             ${
                               activeChild === child
                                 ? "bg-blue-600/20 text-blue-300"
                                 : "text-gray-400 hover:bg-neutral-900/60"
-                            }`}
+                            }
+                          `}
                         >
                           {child}
                         </button>
@@ -657,22 +706,28 @@ export default function InvestorsCorner() {
             ))}
           </aside>
 
-          {/* CONTENT AREA */}
-          <section className="bg-neutral-950/40 border border-neutral-800 rounded-2xl p-10 min-h-[60vh] shadow-xl">
-            {/* Animated Block */}
+          {/* CONTENT */}
+          <section
+            className="
+              bg-neutral-950/40 border border-neutral-800 rounded-xl 
+              p-5 md:p-10 
+              min-h-[50vh] md:min-h-[60vh]
+              shadow-xl
+            "
+          >
             <motion.div
               key={activeMain + activeChild}
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.35 }}
             >
-              <h2 className="text-3xl font-bold mb-6 text-blue-400">
+              <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-blue-400">
                 {activeChild || NAV.find((x) => x.id === activeMain)?.title}
               </h2>
 
-              {/* NO CHILD SELECTED → SHOW DESCRIPTION */}
+              {/* DESCRIPTION */}
               {!activeChild && (
-                <div className="text-gray-400 max-w-2xl leading-relaxed text-lg">
+                <div className="text-gray-400 max-w-xl md:max-w-2xl leading-relaxed text-base md:text-lg">
                   {currentSectionDesc.split("\n").map((line, i) => (
                     <p key={i} className="mb-3">
                       {line.trim()}
@@ -681,26 +736,27 @@ export default function InvestorsCorner() {
                 </div>
               )}
 
-              {/* SINGLE PDF */}
+              {/* PDF LISTS */}
               {CONTENT[activeChild]?.type === "pdf" && (
                 <div
                   onClick={() => setOpenPDF(CONTENT[activeChild])}
-                  className="cursor-pointer bg-neutral-900/50 border border-neutral-800 rounded-xl p-5 
-                  hover:bg-neutral-900 hover:border-neutral-700 transition flex justify-between"
+                  className="
+                    cursor-pointer bg-neutral-900/50 border border-neutral-800 
+                    rounded-xl p-4 md:p-5 
+                    hover:bg-neutral-900 hover:border-neutral-700 
+                    transition flex justify-between
+                  "
                 >
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-200">
+                    <h3 className="text-lg md:text-xl font-semibold text-gray-200">
                       {CONTENT[activeChild].title}
                     </h3>
                     <p className="text-gray-500 text-sm">PDF Document</p>
                   </div>
-                  <span className="text-2xl text-gray-500 group-hover:text-white">
-                    ›
-                  </span>
+                  <span className="text-2xl text-gray-500">›</span>
                 </div>
               )}
 
-              {/* MULTIPLE PDF */}
               {CONTENT[activeChild]?.type === "multiple" && (
                 <div className="space-y-4">
                   {CONTENT[activeChild].files.map((pdf, idx) => (
@@ -709,11 +765,15 @@ export default function InvestorsCorner() {
                       onClick={() =>
                         setOpenPDF({ title: pdf.name, file: pdf.file })
                       }
-                      className="cursor-pointer bg-neutral-900/50 border border-neutral-800 rounded-xl p-5 
-                      hover:bg-neutral-900 hover:border-neutral-700 transition flex justify-between"
+                      className="
+                        cursor-pointer bg-neutral-900/50 border border-neutral-800 
+                        rounded-xl p-4 md:p-5 
+                        hover:bg-neutral-900 hover:border-neutral-700 
+                        transition flex justify-between
+                      "
                     >
                       <div>
-                        <h3 className="text-lg font-semibold text-gray-200">
+                        <h3 className="text-base md:text-lg font-semibold text-gray-200">
                           {pdf.name}
                         </h3>
                         <p className="text-gray-500 text-sm">PDF Document</p>
@@ -727,39 +787,6 @@ export default function InvestorsCorner() {
           </section>
         </div>
       </main>
-
-      {/* PDF MODAL */}
-      <AnimatePresence>
-        {openPDF && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-6"
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-neutral-900 rounded-xl shadow-2xl w-full max-w-5xl h-[90vh] overflow-hidden border border-neutral-700"
-            >
-              <div className="flex justify-between items-center p-4 border-b border-neutral-700">
-                <h3 className="text-xl font-semibold text-blue-300">
-                  {openPDF.title}
-                </h3>
-                <button
-                  onClick={() => setOpenPDF(null)}
-                  className="text-gray-300 hover:text-white text-2xl"
-                >
-                  ×
-                </button>
-              </div>
-
-              <iframe src={openPDF.file} className="w-full h-full" />
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </>
   );
 }
