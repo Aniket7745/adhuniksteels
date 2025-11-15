@@ -577,7 +577,7 @@ export default function InvestorsCorner() {
   const [expanded, setExpanded] = useState([]);
   const [openPDF, setOpenPDF] = useState(null);
 
-  const toggleExpand = (id) => {
+  const toggleExpand = (id: string) => {
     setExpanded((prev) =>
       prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id],
     );
