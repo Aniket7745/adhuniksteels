@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -41,8 +42,15 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
           {/* MOBILE HEADER */}
           <div className="flex w-full items-center justify-between md:hidden">
-            <Link href="/" className="text-lg font-semibold text-neutral-900">
-              Adhunik Steels
+            <Link href="/" className="flex items-center">
+              <Image
+                src="/adhuniklogo.png"
+                alt="Adhunik Steels Logo"
+                width={70} // adjust size
+                height={40}
+                className="object-contain"
+                priority
+              />
             </Link>
 
             <button
@@ -56,8 +64,15 @@ export default function Navbar() {
           {/* DESKTOP NAV */}
           <div className="hidden md:flex items-center justify-between w-full">
             {/* LEFT → LOGO */}
-            <Link href="/" className="text-lg font-semibold text-neutral-900">
-              Adhunik Steels
+            <Link href="/" className="flex items-center">
+              <Image
+                src="/adhuniklogo.png"
+                alt="Adhunik Steels Logo"
+                width={70} // desktop slightly bigger
+                height={45}
+                className="object-contain"
+                priority
+              />
             </Link>
 
             {/* CENTER LINKS */}
